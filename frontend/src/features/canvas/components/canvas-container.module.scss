@@ -1,0 +1,23 @@
+// ===================
+// © AngelaMos | 2026
+// canvas-container.module.scss
+// ===================
+
+@use '@/styles/index' as *;
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: $bg-default;
+  touch-action: none;
+  user-select: none;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid $border-strong;
+    outline-offset: -2px;
+  }
+}

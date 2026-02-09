@@ -1,0 +1,131 @@
+// ===================
+// © AngelaMos | 2026
+// product-node.module.scss
+// ===================
+
+@use '@/styles/index' as *;
+
+.node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  border-radius: $radius-md;
+  transition: filter $duration-fast $ease-out;
+
+  @include hover {
+    filter: brightness(1.15);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $border-strong;
+    outline-offset: 4px;
+  }
+}
+
+.focused {
+  .dot {
+    border-color: $accent-orange;
+  }
+}
+
+.dot {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-full;
+  background-color: $bg-surface-100;
+  border: 1px solid $border-default;
+  flex-shrink: 0;
+  transition: border-color $duration-fast $ease-out;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  border-radius: $radius-xs;
+}
+
+.initial {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $text-light;
+}
+
+.info {
+  @include flex-column;
+  gap: $space-0-5;
+  min-width: 0;
+}
+
+.name {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $text-default;
+  white-space: nowrap;
+}
+
+.tagline {
+  font-size: $font-size-xs;
+  color: $text-lighter;
+  white-space: nowrap;
+  max-width: 200px;
+  @include truncate;
+}
+
+.ecosystem {
+  .dot {
+    width: 32px;
+    height: 32px;
+  }
+
+  .initial {
+    font-size: $font-size-xs;
+  }
+}
+
+.category {
+  padding: $space-2 $space-3;
+  background-color: $bg-surface-100;
+  border: 1px solid $border-muted;
+
+  .dot {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.product {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: $space-6;
+  background-color: $bg-surface-100;
+  border: 1px solid $border-default;
+  min-width: 320px;
+  max-width: 400px;
+
+  .dot {
+    width: 48px;
+    height: 48px;
+    margin-bottom: $space-2;
+  }
+
+  .info {
+    gap: $space-1;
+  }
+
+  .name {
+    font-size: $font-size-lg;
+    font-family: $font-serif;
+    font-weight: $font-weight-semibold;
+  }
+
+  .tagline {
+    font-size: $font-size-sm;
+    white-space: normal;
+    max-width: none;
+    color: $text-light;
+  }
+}
