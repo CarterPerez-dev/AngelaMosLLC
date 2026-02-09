@@ -117,10 +117,10 @@ $header-height: 56px;
   }
 }
 
-.adminItem {
-  margin-top: auto;
-  border-top: 1px solid $border-default;
-  padding-top: $space-3;
+.adminGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
 }
 
 .collapseBtn {

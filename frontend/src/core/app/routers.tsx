@@ -54,6 +54,10 @@ const routes: RouteObject[] = [
             path: ROUTES.ADMIN.USERS,
             lazy: () => import('@/pages/admin'),
           },
+          {
+            path: ROUTES.ADMIN.PRODUCTS,
+            lazy: () => import('@/pages/admin/products'),
+          },
         ],
       },
     ],

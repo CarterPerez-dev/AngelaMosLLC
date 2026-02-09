@@ -5,24 +5,26 @@
 
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import { GiCardAceClubs, GiCardJoker, GiExitDoor } from 'react-icons/gi'
-import { LuChevronLeft, LuChevronRight, LuMenu, LuShield } from 'react-icons/lu'
+import { GiExitDoor } from 'react-icons/gi'
+import {
+  LuChevronLeft,
+  LuChevronRight,
+  LuMenu,
+  LuPackage,
+  LuUsers,
+} from 'react-icons/lu'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useLogout } from '@/api/hooks'
 import { ROUTES } from '@/config'
 import { useIsAdmin, useUIStore, useUser } from '@/core/lib'
 import styles from './shell.module.scss'
 
-const NAV_ITEMS = [
-  { path: ROUTES.DASHBOARD, label: 'Dashboard', icon: GiCardJoker },
-  { path: ROUTES.SETTINGS, label: 'Settings', icon: GiCardAceClubs },
-]
+const NAV_ITEMS: { path: string; label: string; icon: React.ComponentType<{ className?: string }> }[] = []
 
-const ADMIN_NAV_ITEM = {
-  path: ROUTES.ADMIN.USERS,
-  label: 'Admin',
-  icon: LuShield,
-}
+const ADMIN_NAV_ITEMS = [
+  { path: ROUTES.ADMIN.PRODUCTS, label: 'Products', icon: LuPackage },
+  { path: ROUTES.ADMIN.USERS, label: 'Users', icon: LuUsers },
+]
 
 function ShellErrorFallback({ error }: { error: Error }): React.ReactElement {
   return (
@@ -38,8 +40,9 @@ function ShellLoading(): React.ReactElement {
 }
 
 function getPageTitle(pathname: string, isAdmin: boolean): string {
-  if (isAdmin && pathname === ADMIN_NAV_ITEM.path) {
-    return ADMIN_NAV_ITEM.label
+  if (isAdmin) {
+    const adminItem = ADMIN_NAV_ITEMS.find((i) => i.path === pathname)
+    if (adminItem) return adminItem.label
   }
   const item = NAV_ITEMS.find((i) => i.path === pathname)
   return item?.label ?? 'Dashboard'
@@ -89,16 +92,21 @@ export function Shell(): React.ReactElement {
             </NavLink>
           ))}
           {isAdmin && (
-            <NavLink
-              to={ADMIN_NAV_ITEM.path}
-              className={({ isActive }) =>
-                `${styles.navItem} ${styles.adminItem} ${isActive ? styles.active : ''}`
-              }
-              onClick={() => sidebarOpen && toggleSidebar()}
-            >
-              <ADMIN_NAV_ITEM.icon className={styles.navIcon} />
-              <span className={styles.navLabel}>{ADMIN_NAV_ITEM.label}</span>
-            </NavLink>
+            <div className={styles.adminGroup}>
+              {ADMIN_NAV_ITEMS.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `${styles.navItem} ${isActive ? styles.active : ''}`
+                  }
+                  onClick={() => sidebarOpen && toggleSidebar()}
+                >
+                  <item.icon className={styles.navIcon} />
+                  <span className={styles.navLabel}>{item.label}</span>
+                </NavLink>
+              ))}
+            </div>
           )}
         </nav>
 
