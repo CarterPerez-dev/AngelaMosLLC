@@ -1,0 +1,33 @@
+// ===================
+// © AngelaMos | 2026
+// canvas-page.module.scss
+// ===================
+
+@use '@/styles/index' as *;
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: $bg-default;
+}
+
+.loading {
+  @include flex-center;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  color: $text-lighter;
+  font-size: $font-size-sm;
+}
+
+.error {
+  @include flex-column-center;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  gap: $space-4;
+  color: $text-lighter;
+  font-size: $font-size-sm;
+}

@@ -1,0 +1,15 @@
+// ===================
+// © AngelaMos | 2025
+// _fonts.scss
+// ===================
+
+@use 'tokens' as *;
+
+$font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto,
+  'Helvetica Neue', Arial, sans-serif;
+
+$font-serif: 'Instrument Serif', 'Playfair Display', 'Georgia', 'Times New Roman',
+  serif;
+
+$font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+  'Liberation Mono', monospace;
